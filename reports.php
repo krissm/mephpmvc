@@ -3,7 +3,7 @@
  * A page to show all the kmom reports.
  */
 include("config.php");
-
+$path = dirname ( $_SERVER ['SCRIPT_NAME'] ) . '/';
 // Create the data array which is to be used in the template file.
 $data['title'] = "Reports";
 $data['meta_description'] = "All reports colloected on one page.";
@@ -75,6 +75,29 @@ $data['main'] = <<<EOD
 	<div>
 		<a href="http://www.student.bth.se/~krmc12/phpmvc/kmom3/movic/guestbook">Movic Guestbook</a>
 	</div>
+</article>
+
+<article class="report">
+	<h1>Kmom04: Modeller för login, användare och grupper</h1>
+	<p>You can test the different parts of Movic by visiting <a href='http://www.student.bth.se/~krmc12/phpmvc/kmom4/movic/index.php'>movic/index.php</a>. Here you will find links to all the different things you can do so far. Click on the links and follow the instructions to test the different parts of Movic. </p>
+	<p>Like with the previous course moments I followed the evolution of Lydia very carefully because of the risk of getting lost and not being able to find my way back later as the code evolves. To ensure I understand the architecture of Movic I decided to draw up some UML diagrams for this course moment until I felt that I understood what exactly is happening as I run the code. It is in no way complete but these were the important parts I felt I needed to map up to move on with confidence: </p>	
+	<img src='img/movicClassDiagram.png' style="width:900px">
+	<br>
+	<img src='img/logincomdiagram.png'>
+	<p>I learned that the function.php files are global methods and so can be called from anywhere. </p>
+	<p>When constructing the movic object Session, Database, CViewContainer, and MUser objects are initiated, with the help of the config settings (the config array member variable of this object).</p>
+	<p>The FrontControllerRoute method of the movic object checks url and route to controllers and call on the method you send in as a url. The controllers' methods sets the Session, Database, View, and User member variable with the help of model objects. </p>
+	<p>The ThemeEngineRender method of the movic object include the views of the selected theme, extract all data variables and view data to gain access to them in the default view template.</p>
+	<p>I still struggle to understand why there is an object which copies the singleton class Movic? The singleton pattern means that there is only one instance of the class instantiated, never two. It can be initiated from anywhere i.e. it has global visibility; a static method which return an instance of itself.  (Factories are often accessed with the Singleton pattern. However, Movic is not a factory, even though it is creating many of the other objects, since it is not returning them; it has no methods with which you can return its members.) Movic probably works as a Façade which is a common use for the singleton pattern. “the Façade object is a single point of contact to the subsystem; a façade object that wraps the subsystem. This façade object presents a single unified interface and is responsible for collaborating with the subsystem components.”(section 26.9, Applying UML and Patterns, 3 edition) I don’t see any good reasons to destroy this pattern by creating the CObject. I think it would have been a lot easier to follow the code if an Movic instance was used alone. </p>
+	<h3>Hur kändes det att jobba med CForm-klassen (den du valde)?</h3>
+	<p>It feels good even though it has been a bit confusing along the way. But once I understood how it worked it definitely makes form management a lot easier. </p>
+	<h3>Har du några tankar kring hur man sparar lösenord?</h3>
+	<p>I have read about how it is important to salt in case someone gets access to the user information on the database. It makes it much more unlikely that people can find what hash password represents what string password. Adding a random number in front of a password makes it very unlikely that two people have the same hash password. But unless you have a secure connection the password can still be stolen when a user log in or create an account, since the pasword is send with http in plain text. </p>
+	<h3>Hur känns det att jobba i ramverket när det byggs ut efter hand?</h3>
+	<p>It has felt very difficult until now. But it would have felt even more difficult to work with it as a finished framework. Up until now I was convinced I would never use it in the future, but now when understand all the components I feel like I’m quite likely to use it since it cuts out a lot of steps in designing a new web application, and I’m also not looking forward to spending the time mastering  another framework. Learning to use a framework feels almost like learning to use a new higher level programming language. </p>
+	<h3>Något som var extra utmanande med detta avsnitt av tutorialen?</h3>
+	<p>I think the biggest challenge was to learn how to use the form class. Following how the view is put together was also very challenging. I feel like it is spread out too much; bits and pieces are collected from all over the place. </p>
+	My Me Page: http://www.student.bth.se/~krmc12/phpmvc/me/index.php
 </article>
 EOD;
 
