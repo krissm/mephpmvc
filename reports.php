@@ -97,7 +97,7 @@ $data['main'] = <<<EOD
 	<p>It has felt very difficult until now. But it would have felt even more difficult to work with it as a finished framework. Up until now I was convinced I would never use it in the future, but now when understand all the components I feel like I’m quite likely to use it since it cuts out a lot of steps in designing a new web application, and I’m also not looking forward to spending the time mastering  another framework. Learning to use a framework feels almost like learning to use a new higher level programming language. </p>
 	<h3>Något som var extra utmanande med detta avsnitt av tutorialen?</h3>
 	<p>I think the biggest challenge was to learn how to use the form class. Following how the view is put together was also very challenging. I feel like it is spread out too much; bits and pieces are collected from all over the place. </p>
-	My Me Page: http://www.student.bth.se/~krmc12/phpmvc/kmom4/mephpmvc/index.php
+	<a href='http://www.student.bth.se/~krmc12/phpmvc/kmom4/mephpmvc/index.php'>My Me Page</a> 
 </article>
 EOD;
 
